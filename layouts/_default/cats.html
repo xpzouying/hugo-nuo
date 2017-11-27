@@ -1,0 +1,26 @@
+{{ define "title" }}
+  {{ .Title }} | {{ if isset .Site.Params "seotitle" }}{{ .Site.Params.seotitle }}{{ else }}{{ .Site.Title }}{{ end }}
+{{ end }}
+
+{{ define "main" }}
+  {{ partial "header.html" . }}
+  {{ partial "fancybox.html" . }}
+
+  <section class="main cats-list">
+    <h1>泡芙小姐和钱多多的小屋</h1>
+    {{ range $.Site.Data.cats }}
+      <div class="cat-row-line">
+        <div class="cat-image-show" width="50%">
+          <a data-fancybox="gallery" rel="cat_show_group" href="{{ .bigimage }}" data-caption="{{ .description }}">
+              <img class="fancyimage" src="{{ .smallimage }}" alt="" />
+          </a>
+        </div>
+        <div class="cat-descrition" width="50%">
+            {{ .description }}
+        </div>
+      </div>
+    {{ end }}
+  </section>
+
+  {{ partial "footer.html" . }}
+{{ end }}
